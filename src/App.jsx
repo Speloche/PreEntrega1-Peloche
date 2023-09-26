@@ -1,7 +1,15 @@
 import './App.css'
 import NavBar from './components/NavBar/NavBar'
-import ItemListContainer from './components/ItemListContainer/ItemListContainer'
-import Cards from './components/Cards/Cards'
+import ItemListContainer from './components/Items/ItemListContainer'
+import Cards from './components/Cards/CardList'
+import ItemDetailContainer from './components/Details/ItemDetailContainer'
+import Home from './pages/Home'
+import Contact from './pages/Contact'
+import About from './pages/About'
+import Detalle from './pages/Detalle'
+import { Route, Routes } from 'react-router-dom'
+
+
 
 
 function App() {
@@ -11,43 +19,20 @@ function App() {
     <div className='container'>
 
       <NavBar />
-      <ItemListContainer greeting="Bienvenidos a la Tienda de Tenis para Todos" />
 
-      <div className='row mt-5'>
+      <Routes>
+        <Route path='/' element ={<Home/>}/> 
+        <Route path='/Contact' element ={<Contact/>}/>
+        <Route path='/About' element ={<About/>}/>
+        <Route path='/detalle/:id' element ={<Detalle/>}/>
 
-        <div className='col-3'>
-        <Cards 
-        title="Babolat Pure Aero" 
-        description="Aero" 
-        img="src/assets/img/pure-aero.jpeg"
-        />
-        </div>
+      </Routes>
 
-        <div className='col-3'>
-        <Cards 
-        title="Babolat Pure Aero Rafa" 
-        description=" Aero RAfa " 
-        img="src/assets/img/pure-aero-rafa.jpeg"
-        />
-        </div>
 
-        <div className='col-3'>
-        <Cards 
-        title="Babolat Pure Drive" 
-        description="Babolat" 
-        img="src/assets/img/pure-drive.jpeg"        
-        />
-        </div>
+      {/*<ItemDetailContainer />*/}
 
-        <div className='col-3' >
-        <Cards 
-        title="Pelotas Wilson Roland Garros " 
-        description="Para superficie de Polvo de Ladrillo" 
-        img="src/assets/img/wilson-roland.jpeg"
-        />
-        </div>
+      
 
-      </div>
 
     </div>
 
