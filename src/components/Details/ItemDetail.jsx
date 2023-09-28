@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Counter from '../Counter/Counter'
 import './ItemDetail.css'
 
@@ -6,10 +6,10 @@ const ItemDetail = ({item}) => {
 
 
     return (
-        <div className='card rounded mt-3' style={{ width: '450px', height:'605px'}}>
+        <div className='card rounded mt-3 justify-content-center align-items-center' style={{ width: '550px', height:'700px', margin: 'auto'}}>
             <div className="d-flex flex-column align-items-center p-1 mt-2 bg-body-tertiary">
                 <h5> {item.title}</h5>
-            <img className= "m-2" style={{ width: '190px', height:'250px'}} src={item.image} alt="" />
+            <img className= "m-2" style={{ width: '250px', height:'290px'}} src={item.image} alt="" />
             <p>
                 {item.description}
             </p>
@@ -18,7 +18,7 @@ const ItemDetail = ({item}) => {
             </p>
             </div>
             <hr className="divider " />
-            <div className="d-flex justify-content-around ">
+            <div className="d-flex d-flex justify-content-evenly align-items-center">
             <Counter/>
             <button className=' btn btn-success fs-5 fw-medium font-monospace '> Comprar</button>
             </div>

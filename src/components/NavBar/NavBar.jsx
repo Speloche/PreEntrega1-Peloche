@@ -1,41 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link, NavLink } from 'react-router-dom';
 import CartWidget from './CartWidget'
-import { Link } from 'react-router-dom'
+import useFetch from '../../Hooks/useFetch';
+
 
 const NavBar = () => {
+    const [categories, setCategories] = useState([]);
+    const [categorias] = useFetch('https://fakestoreapi.com/products/categories');
+
+    useEffect(() => {
+        if (categorias) {
+            setCategories(categorias);
+        }
+    }, [categorias]);
+
+
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary rounded-bottom-4">
+        <Navbar collapseOnSelect expand="lg" className="navbar bg-body-tertiary rounded-bottom-4">
+    <Container className="d-flex justify-content-between align-items-center">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+                <Link className="nav-link active fs-5" aria-current="page" to="/">Home</Link>
+                <Link className="nav-link active fs-5" to="/about">About</Link>
+                <NavDropdown title="CATEGORIAS" id="collapsible-nav-dropdown" className='fs-5 '>
+                    {categories.map((categoria, index) => (
+                        <NavDropdown.Item key={index} href={`/category/${categoria}`}>
+                            <span className='categoria fs-5'>{categoria}</span>
+                        </NavDropdown.Item>
+                    ))}
+                </NavDropdown>
+            </Nav>
+        </Navbar.Collapse>
+        
+        <Navbar.Brand href="/" className="">
+            <img src="https://i.postimg.cc/dtcd3cNC/logo-chico-2.png" alt="Logo" width="100" height="100"  />
+            <span className="fs-4 text-success-emphasis">Tenis para Todos</span>
+        </Navbar.Brand>
 
-            <div className="container-fluid">
+        <CartWidget />
+    </Container>
+</Navbar>
 
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-
-                <div className="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
-                    <ul className="navbar-nav fs-5">
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/contact">Contact</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/about">About </Link>
-                        </li>
-                    </ul>
-
-                    <Link className="navbar-brand " to="/">
-                        <img src="src/assets/img/logo-chico-2.png" alt="Logo" width="100" height="100" className="d-inline-block " />
-                        <span className=" align-text-center p-2 fs-4 text-success-emphasis ">Tenis para Todos</span>
-                    </Link>
-
-                    <CartWidget />
-
-                </div>
-            </div>
-        </nav>
     )
 }
 
 export default NavBar
+

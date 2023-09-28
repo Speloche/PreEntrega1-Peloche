@@ -1,15 +1,11 @@
+import React from 'react'
 import './App.css'
 import NavBar from './components/NavBar/NavBar'
-import ItemListContainer from './components/Items/ItemListContainer'
-import Cards from './components/Cards/CardList'
-import ItemDetailContainer from './components/Details/ItemDetailContainer'
 import Home from './pages/Home'
-import Contact from './pages/Contact'
+import Categorias from './pages/Categorias'
 import About from './pages/About'
 import Detalle from './pages/Detalle'
 import { Route, Routes } from 'react-router-dom'
-
-
 
 
 function App() {
@@ -22,17 +18,11 @@ function App() {
 
       <Routes>
         <Route path='/' element ={<Home/>}/> 
-        <Route path='/Contact' element ={<Contact/>}/>
         <Route path='/About' element ={<About/>}/>
+        <Route path='/category/:categoryid' element={<Categorias/>}/>
         <Route path='/detalle/:id' element ={<Detalle/>}/>
 
       </Routes>
-
-
-      {/*<ItemDetailContainer />*/}
-
-      
-
 
     </div>
 
