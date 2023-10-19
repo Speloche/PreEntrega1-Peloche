@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Counter.css'
 
-const Counter = () => {
+const Counter = ({onAdd}) => {
     const [count, setCount] = useState(1)
 
     const increment = () =>{
@@ -15,9 +15,10 @@ const Counter = () => {
 
     return (
         <div>
-            <button className='botonCounter btn btn-success m-2 mb-md-0 btn-round' onClick={decrement}> - </button>
+            <button className='botonCounter btn btn-success m-2 mb-md-2 btn-round' onClick={decrement}> - </button>
             <span className= "numeroCounter" > { count } </span>
-            <button className='botonCounter btn btn-success m-2 mb-md-0 btn-round' onClick={increment}> + </button>
+            <button className='botonCounter btn btn-success m-2 mb-md-2 btn-round' onClick={increment}> + </button>
+            <button className=' btn btn-success fs-6 fw-medium font-monospace ' onClick={()=> onAdd(count)} > Agregar al Carrito</button>
 
         </div>
     )

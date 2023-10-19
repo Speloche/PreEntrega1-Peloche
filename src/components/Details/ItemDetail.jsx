@@ -2,7 +2,7 @@ import React from 'react'
 import Counter from '../Counter/Counter'
 import './ItemDetail.css'
 
-const ItemDetail = ({item}) => {
+const ItemDetail = ({item,onAdd}) => {
 
 
     return (
@@ -19,8 +19,7 @@ const ItemDetail = ({item}) => {
             </div>
             <hr className="divider " />
             <div className="d-flex d-flex justify-content-evenly align-items-center">
-            <Counter/>
-            <button className=' btn btn-success fs-5 fw-medium font-monospace '> Comprar</button>
+            <Counter onAdd = {onAdd}/>
             </div>
 
         </div>

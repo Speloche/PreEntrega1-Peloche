@@ -1,3 +1,5 @@
 .navbar{
-    justify-content: space-between;
+    justify-content:space-evenly;
+    --bs-navbar-brand-margin-end: 10rem;
 }
+

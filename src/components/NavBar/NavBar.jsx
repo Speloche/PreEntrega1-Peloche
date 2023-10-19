@@ -20,13 +20,12 @@ const NavBar = () => {
 
 
     return (
-        <Navbar collapseOnSelect expand="lg" className="navbar bg-body-tertiary rounded-bottom-4">
-    <Container className="d-flex justify-content-between align-items-center">
+        <Navbar collapseOnSelect expand="lg" className="navbar bg-body-tertiary rounded-bottom-4 ">
+    <Container className=" ">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
                 <Link className="nav-link active fs-5" aria-current="page" to="/">Home</Link>
-                <Link className="nav-link active fs-5" to="/about">About</Link>
                 <NavDropdown title="CATEGORIAS" id="collapsible-nav-dropdown" className='fs-5 '>
                     {categories.map((categoria, index) => (
                         <NavDropdown.Item key={index} href={`/category/${categoria}`}>
@@ -37,7 +36,7 @@ const NavBar = () => {
             </Nav>
         </Navbar.Collapse>
         
-        <Navbar.Brand href="/" className="">
+        <Navbar.Brand href="/" className=" me-5">
             <img src="https://i.postimg.cc/dtcd3cNC/logo-chico-2.png" alt="Logo" width="100" height="100"  />
             <span className="fs-4 text-success-emphasis">Tenis para Todos</span>
         </Navbar.Brand>
