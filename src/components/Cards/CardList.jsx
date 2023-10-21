@@ -18,7 +18,7 @@ const CardList = ({ item }) => {
             </Card.Body>
 
             <Link to={`/detalle/${item.id}`} >
-                <Button variant="success fw-medium font-monospace mt-3" >Ver detalles </Button>
+                <Button variant="success fw-medium font-monospace shadow mt-3" >Ver detalles </Button>
             </Link>
         </Card>
     )

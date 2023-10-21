@@ -3,24 +3,16 @@ import CartContext from '../../context/cartContext/CartContext'
 import styles from './style.module.css'
 import { addDoc, collection, getFirestore } from "firebase/firestore"
 import { useNavigate } from 'react-router-dom'
-import FormComponent from '../Form/FormComponent'
-import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import CartVacio from '../Cards/CartVacio'
+
 
 const CartDetail = () => {
-    // const [buyer, setBuyer] = useState({
-    //     name: "",
-    //     email: ""
-    // })
-    // const [errors, setErrors] = useState({
-    //     name: "",
-    //     email: ""
-    // })
-    const [orderId, setOrderId] = useState("")
+    const [orderId,] = useState("")
     const { cart, removeItem, clear } = useContext(CartContext)
     const [isCartEmpty, setIsCartEmpty] = useState(false);
 
-    
+
     useEffect(() => {
         // Check if the cart is empty
         setIsCartEmpty(cart.length === 0);
@@ -85,39 +77,13 @@ const CartDetail = () => {
         })
     }
 
-    // const onSubmit = (e) => {
-    //     e.preventDefault();
-    //     const errorLocal = {};
-
-    //     if (!buyer.name) {
-    //         errorLocal.name = "El nombre es obligatorio";
-    //     }
-
-    //     if (!buyer.email) {
-    //         errorLocal.email = "El email es obligatorio";
-    //     }
-
-    //     if (Object.keys(errorLocal).length === 0) {
-    //         addToCart();
-    //     } else {
-    //         setErrors(errorLocal);
-    //     }
-    // };
-
     return (
 
         <div>
 
-
-            {/* <FormComponent
-                formData={buyer}
-                inputChange={handleChange}
-                onSubmit={onSubmit}
-                errors={errors}
-                >
-            </FormComponent> */}
-
-{
+            {isCartEmpty ? (
+                <CartVacio /> 
+            ) : (
                 cart.map((el) => (
                     <div className={styles.container} key={el.id}>
                         {el && (
@@ -133,14 +99,15 @@ const CartDetail = () => {
                         </button>
                     </div>
                 ))
-            }
-
-
-
+            )}
 
             {
                 cart.length > 0 &&
-                <button className='btn btn-primary' onClick={addToCart}>Create order</button>
+                <div>
+
+                <button className='btn btn-success fs-6 fw-medium font-monospace' onClick={addToCart}>Create order</button>
+                
+                </div>
             }
             {
                 orderId && <span>Order created: {orderId}</span>

@@ -26,7 +26,7 @@ const ItemDetail = ({ item, onAdd }) => {
             </div>
             <hr className="divider " />
             <div className="d-flex d-flex justify-content-evenly align-items-center">
-                <Counter onAdd={onAdd} />
+            <Counter onAdd={onAdd} stock={item.stock} />
             </div>
 
         </div>

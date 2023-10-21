@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
-const Counter = ({ onAdd, text = "Agregar al carrito", q = 1 }) => {
+const Counter = ({ onAdd, text = "Agregar al carrito", stock, q = 1 }) => {
     const [count, setCount] = useState(q);
 
     const increment = () => {
-        setCount(count + 1);
+        if (count < stock) {
+            setCount(count + 1);
+        } else {
+            // You can show a toast or message here to inform the user.
+            toast.error('No hay más stock disponible.', {
+                position: 'top-right',
+                autoClose: 1500,
+            });
+        }
     };
 
     const decrement = () => {
@@ -15,13 +23,20 @@ const Counter = ({ onAdd, text = "Agregar al carrito", q = 1 }) => {
     };
 
     const addToCart = () => {
-        onAdd(count); // Call the onAdd function to add the item to the cart
+        if (count <= stock) {
+            onAdd(count);
 
-        // Show a success toast when the item is added to the cart
-        toast.success('Producto agregado al carrito', {
-            position: 'top-right',
-            autoClose: 2000, // Adjust the auto-close duration
-        });
+            toast.success('Producto agregado al carrito', {
+                position: 'top-right',
+                autoClose: 1500,
+            });
+        } else {
+            // You can show a toast or message here to inform the user.
+            toast.error('No hay más stock disponible.', {
+                position: 'top-right',
+                autoClose: 1500,
+            });
+        }
     };
 
     return (
@@ -29,7 +44,7 @@ const Counter = ({ onAdd, text = "Agregar al carrito", q = 1 }) => {
             <button className='botonCounter btn btn-success m-2 mb-md-2 btn-round' onClick={decrement}> - </button>
             <span className="numeroCounter"> {count} </span>
             <button className='botonCounter btn btn-success m-2 mb-md-2 btn-round' onClick={increment}> + </button>
-            <button className='btn btn-success fs-6 fw-medium font-monospace' onClick={addToCart}>{text}</button>
+            <button className='btn btn-success fs-6 fw-medium shadow font-monospace' onClick={addToCart}>{text}</button>
         </div>
     );
 };
