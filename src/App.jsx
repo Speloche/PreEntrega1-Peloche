@@ -1,13 +1,10 @@
 import React from 'react'
 import './App.css'
 import NavBar from './components/NavBar/NavBar'
-import Home from './pages/Home'
-import Categorias from './pages/Categorias'
-import About from './pages/About'
-import Detalle from './pages/Detalle'
-import { Route, Routes } from 'react-router-dom'
 import CartContextProvider from './context/cartContext/CartContextProvider'
-import Cart from './pages/Cart'
+import RoutesComponent from './routes/RoutesComponent'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -19,15 +16,10 @@ function App() {
 
       <CartContextProvider>
         <NavBar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/About' element={<About />} />
-          <Route path='/category/:categoryid' element={<Categorias />} />
-          <Route path='/detalle/:id' element={<Detalle />} />
-          <Route path='/Cart' element={<Cart />} />
-        </Routes>
+        <RoutesComponent />
       </CartContextProvider>
 
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
 
   )

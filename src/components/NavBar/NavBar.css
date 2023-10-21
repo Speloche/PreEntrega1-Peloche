@@ -3,3 +3,14 @@
     --bs-navbar-brand-margin-end: 10rem;
 }
 
+.link-active {
+    color: rgb(144, 129, 23);
+}
+.navlink {
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.error {
+    border: red 1px solid;
+}

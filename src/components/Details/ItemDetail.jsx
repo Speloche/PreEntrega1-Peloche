@@ -2,24 +2,31 @@ import React from 'react'
 import Counter from '../Counter/Counter'
 import './ItemDetail.css'
 
-const ItemDetail = ({item,onAdd}) => {
+const ItemDetail = ({ item, onAdd }) => {
 
 
     return (
-        <div className='card rounded mt-3 justify-content-center align-items-center' style={{ width: '550px', height:'700px', margin: 'auto'}}>
+        <div className='card rounded mt-3 justify-content-center align-items-center'
+            style={{ width: '450px', height: '650px', margin: 'auto' }}>
+
             <div className="d-flex flex-column align-items-center p-1 mt-2 bg-body-tertiary">
-                <h5> {item.title}</h5>
-            <img className= "m-2" style={{ width: '250px', height:'290px'}} src={item.image} alt="" />
-            <p>
-                {item.description}
-            </p>
-            <p  className=' fs-4 fw-semibold'>
-                Precio: $ {item.price}
-            </p>
+
+                <h2> {item.nombre}</h2>
+
+                <img className="m-3" style={{ width: '200px', height: '250px' }} src={item.img} alt="" />
+
+                <p className='text-center'>
+                    {item.descripcion}
+                </p>
+ 
+                <p className=' fs-4 fw-semibold'>
+                    Precio: $ {item.precio}
+                </p>
+
             </div>
             <hr className="divider " />
             <div className="d-flex d-flex justify-content-evenly align-items-center">
-            <Counter onAdd = {onAdd}/>
+                <Counter onAdd={onAdd} />
             </div>
 
         </div>

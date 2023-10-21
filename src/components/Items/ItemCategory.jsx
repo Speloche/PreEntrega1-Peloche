@@ -1,25 +1,54 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import CardList from '../Cards/CardList';
-import { useParams } from 'react-router-dom';
-import useFetch from '../../Hooks/useFetch';
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 
-const ItemCategory = ({ categories }) => {
-    const { categoryid } = useParams();
-    const [articulos] = useFetch(`https://fakestoreapi.com/products/category/${categoryid}`);
+const ItemCategory = ({ category }) => {
+    console.log('Category:', category);
+    const categoryMapping = {
+        raquetas: "Raquetas",
+        pelotas: "Pelotas",
+        overgrips: "OverGrips",
+    };
 
+    const actualCategory = categoryMapping[category.toLowerCase()];
+
+
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const fetchData = () => {
+            const db = getFirestore();
+            const itemCollection = collection(db, "items");
+            const q = query(itemCollection, where("categoria", "==", actualCategory ));
 
-    }, [categoryid]);
+
+            getDocs(q)
+                .then(snapshot => {
+                    const allData = snapshot.docs.map((document) => ({ id: document.id, ...document.data() }));
+
+                    setItems(allData);
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        };
+
+        fetchData();
+    }, [category])
 
     return (
+
         <div className='d-flex justify-content-center align-items-center'>
 
             <div className="container">
                 <div className='row '>
-                {articulos !== null && articulos.map((articulo) => (
-                        <div key={articulo.id} className='col-md-4 mb-4'>
-                            <CardList item={articulo} />
+                    {items !== null && items.map((item) => (
+                        <div key={item.id} className='col-md-4 mb-4'>
+                            <CardList item={item} />
                         </div>
                     ))}
                 </div>
