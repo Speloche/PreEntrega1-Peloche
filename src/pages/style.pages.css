@@ -1,6 +1,6 @@
 .checkout{
     width: 400px;
-    height: 500px;
+    min-height: 530px;
     margin: 40px auto;
     background-color: white;
     border-radius: 15px;
