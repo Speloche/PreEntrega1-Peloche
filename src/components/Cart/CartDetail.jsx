@@ -117,9 +117,9 @@ const CartDetail = () => {
                 <CartVacio />
             ) : (
                 <div>
-                    {/* Display the buyer information form */}
-                    <div className="d-flex flex-column mt-4">
-                        <label htmlFor="name">Ingrese su nombre</label>
+                    
+                    <div className="d-flex flex-column  mt-4 align-items-center">
+                        <label htmlFor="name" className="fs-5">Ingrese su nombre</label>
                         <input
                             className={errors.name ? "error" : ""}
                             onChange={handleChange}
@@ -127,10 +127,11 @@ const CartDetail = () => {
                             name="name"
                             id="name"
                             value={buyer.name}
+                            style={{ width: "400px" , borderRadius: "10px" }}
                         />
                         {errors.name && <strong className="text-danger"> {errors.name}</strong>}
     
-                        <label htmlFor="celular">Ingrese su Telefono</label>
+                        <label htmlFor="celular" className="fs-5" >Ingrese su Telefono</label>
                         <input
                             className={errors.tel ? "error" : ""}
                             onChange={handleChange}
@@ -138,10 +139,11 @@ const CartDetail = () => {
                             name="tel"
                             id="tel"
                             value={buyer.tel}
+                            style={{ width: "400px" , borderRadius: "10px" }}
                         />
                         {errors.tel && <strong className="text-danger"> {errors.tel}</strong>}
     
-                        <label htmlFor="email">Ingrese su email</label>
+                        <label htmlFor="email" className="fs-5">Ingrese su email</label>
                         <input
                             className={errors.email ? "error" : ""}
                             onChange={handleChange}
@@ -149,6 +151,7 @@ const CartDetail = () => {
                             name="email"
                             id="email"
                             value={buyer.email}
+                            style={{ width: "400px" , borderRadius: "10px" }}
                         />
                         {errors.email && <strong className="text-danger"> {errors.email}</strong>}
                     </div>
