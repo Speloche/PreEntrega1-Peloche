@@ -10,11 +10,13 @@ import CartVacio from '../Cards/CartVacio'
 const CartDetail = () => {
     const [buyer, setBuyer] = useState({
         name: "",
-        email: ""
+        email: "",
+        tel: ""
     })
     const [errors, setErrors] = useState({
         name: "",
-        email: ""
+        email: "",
+        tel: ""
     })
 
     const [orderId,] = useState("")
@@ -71,7 +73,7 @@ const CartDetail = () => {
         addDoc(orderCollection, purchase)
             .then((res) => {
                 navigate(`/checkout/${res.id}`, {
-                    state: { orderId: res.id, items: purchase.items, total: purchase.total },
+                    state: { orderId: res.id, items: purchase.items, total: purchase.total,buyer: buyer },
                 });
             })
             .catch((err) => console.log(err));
@@ -96,6 +98,9 @@ const CartDetail = () => {
         if(!buyer.email) {
             errorLocal.email = "El email es obligatorio"
         };
+        if(!buyer.tel) {
+            errorLocal.tel = "El Telefono es obligatorio"
+        };
       //  []
         if (Object.keys(errorLocal).length === 0) {
             // No hay errores, puedes realizar la acción deseada, como agregar al carrito
@@ -107,51 +112,72 @@ const CartDetail = () => {
     }
 
     return (
-
         <div>
-            <div>
-                <label htmlFor=" name ">Ingrese su nombre </label>
-                <input className= {errors.name ? "error" : ""} onChange={handleChange} type="text" name="name" id="name" value={buyer.name} />
-                {errors.name && <span> {errors.name}</span>}
-
-                <label htmlFor=" email ">Ingrese su email </label>
-                <input className= {errors.email ? "error" : ""} onChange={handleChange} type="text" name="email" id="email" value={buyer.email} />
-                {errors.email && <span> {errors.email}</span>}
-            </div>
-
             {isCartEmpty ? (
                 <CartVacio />
             ) : (
-                cart.map((el) => (
-                    <div className={styles.container} key={el.id}>
-                        {el && (
-                            <div className={styles.cardBody}>
-                                <p>Articulo: {el.nombre}</p>
-                                <p>Cantidad: {el.quantity}</p>
-                            </div>
-                        )}
-                        <img src={el.img} className={styles.image} />
-                        <p className={styles.cardPrice}>Precio: $ {el.precio}</p>
-                        <button onClick={() => handleRemoveItem(el.id, el.nombre)} className={styles.cartButton}>
-                            X
+                <div>
+                    {/* Display the buyer information form */}
+                    <div className="d-flex flex-column mt-4">
+                        <label htmlFor="name">Ingrese su nombre</label>
+                        <input
+                            className={errors.name ? "error" : ""}
+                            onChange={handleChange}
+                            type="text"
+                            name="name"
+                            id="name"
+                            value={buyer.name}
+                        />
+                        {errors.name && <strong className="text-danger"> {errors.name}</strong>}
+    
+                        <label htmlFor="celular">Ingrese su Telefono</label>
+                        <input
+                            className={errors.tel ? "error" : ""}
+                            onChange={handleChange}
+                            type="number"
+                            name="tel"
+                            id="tel"
+                            value={buyer.tel}
+                        />
+                        {errors.tel && <strong className="text-danger"> {errors.tel}</strong>}
+    
+                        <label htmlFor="email">Ingrese su email</label>
+                        <input
+                            className={errors.email ? "error" : ""}
+                            onChange={handleChange}
+                            type="text"
+                            name="email"
+                            id="email"
+                            value={buyer.email}
+                        />
+                        {errors.email && <strong className="text-danger"> {errors.email}</strong>}
+                    </div>
+    
+                    {cart.map((el) => (
+                        <div className={styles.container} key={el.id}>
+                            {el && (
+                                <div className={styles.cardBody}>
+                                    <p>Articulo: {el.nombre}</p>
+                                    <p>Cantidad: {el.quantity}</p>
+                                </div>
+                            )}
+                            <img src={el.img} className={styles.image} />
+                            <p className={styles.cardPrice}>Precio: $ {el.precio}</p>
+                            <button onClick={() => handleRemoveItem(el.id, el.nombre)} className={styles.cartButton}>
+                                X
+                            </button>
+                        </div>
+                    ))}
+                    <div>
+                        <button className="btn btn-success fs-6 fw-medium font-monospace" onClick={onSubmit}>
+                            Finalizar Compra
                         </button>
                     </div>
-                ))
-            )}
-
-            {
-                cart.length > 0 &&
-                <div>
-
-                    <button className='btn btn-success fs-6 fw-medium font-monospace ' onClick={onSubmit}>Finalizar Compra </button>
-
                 </div>
-            }
-            {
-                orderId && <span>Order created: {orderId}</span>
-            }
+            )}
+            {orderId && <span>Order created: {orderId}</span>}
         </div>
-    )
+    );
 }
 
 export default CartDetail
