@@ -23,4 +23,4 @@ Al finalizar la compra se le muestra al usuario una orden de compra procesada y 
 <h2>Funcionamiento Gif</h2>
 
 
-<img src="https://i.postimg.cc/rw5Cghn9/6acfd99b-26b8-471e-b42f-86ba34b0b361.gif" > <img/>
+<img src="src/assets/gif/6acfd99b-26b8-471e-b42f-86ba34b0b361.gif" > <img/>
