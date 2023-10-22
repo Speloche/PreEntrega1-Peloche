@@ -101,12 +101,12 @@ const CartDetail = () => {
         if(!buyer.tel) {
             errorLocal.tel = "El Telefono es obligatorio"
         };
-      //  []
+
         if (Object.keys(errorLocal).length === 0) {
-            // No hay errores, puedes realizar la acción deseada, como agregar al carrito
+            
             addToCart();
         } else {
-            // Hay errores, establece el estado de errores para mostrarlos al usuario
+            
             setErrors(errorLocal);
         }
     }

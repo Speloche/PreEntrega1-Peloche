@@ -8,7 +8,7 @@ const Counter = ({ onAdd, text = "Agregar al carrito", stock, q = 1 }) => {
         if (count < stock) {
             setCount(count + 1);
         } else {
-            // You can show a toast or message here to inform the user.
+            
             toast.error('No hay más stock disponible.', {
                 position: 'top-right',
                 autoClose: 1500,
@@ -31,7 +31,7 @@ const Counter = ({ onAdd, text = "Agregar al carrito", stock, q = 1 }) => {
                 autoClose: 1500,
             });
         } else {
-            // You can show a toast or message here to inform the user.
+            
             toast.error('No hay más stock disponible.', {
                 position: 'top-right',
                 autoClose: 1500,

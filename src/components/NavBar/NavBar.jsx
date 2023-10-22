@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link, NavLink } from 'react-router-dom';
 import CartWidget from './CartWidget'
 
@@ -18,7 +17,7 @@ const NavBar = () => {
                     <Nav className="me-auto">
                         <Link className="nav-link active fs-5" aria-current="page" to="/">Home</Link>
 
-                        {/* Map through the categories and create dynamic links */}
+                        
                         {categories.map((category) => (
                             <Link key={category} to={`/category/${category.toLowerCase()}`} className="nav-link active fs-5">{category}</Link>
                         ))}
